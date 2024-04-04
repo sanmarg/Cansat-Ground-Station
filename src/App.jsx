@@ -15,8 +15,6 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <SerialDataReader onDataReceived={handleDataReceived} />
-      {/* <GraphComponent data={data} /> */}
     </div>
   );
 };
