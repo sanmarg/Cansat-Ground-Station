@@ -19,10 +19,10 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
             console.log('Serial port closed.');
             break;
           }
-          // Print the received data as a string
-          const receivedData = new TextDecoder().decode(value);
-          console.log('Received data:', receivedData);
-          setData(receivedData);
+
+          console.log(value);
+
+          setData(value);
         }
       } catch (error) {
         console.error('Error reading data:', error);

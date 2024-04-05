@@ -13,24 +13,24 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 try:
     while True:
         # Generate random data for telemetry
-        packetCount = random.randint(0, 100)
-        mode = random.randint(0, 255)
-        state = random.randint(0, 255)
-        altitude = random.randint(0, 10000)
-        temperature = random.randint(-20, 50)
-        pressure = random.randint(800, 1200)
-        voltage = random.randint(3, 5)
-        gpsTime = random.randint(0, 24)
-        gpsLatitude = random.randint(-90, 90)
-        gpsLongitude = random.randint(-180, 180)
-        gpsSats = random.randint(0, 12)
-        tiltX = random.randint(-90, 90)
-        tiltY = random.randint(-90, 90)
-        rotZ = random.randint(0, 360)
+        packetCount = 0
+        mode = 0
+        state = 0
+        altitude = 0
+        temperature = 0
+        pressure = 0
+        voltage = 0
+        gpsTime = 0
+        gpsLatitude = 0
+        gpsLongitude = 0
+        gpsSats = 0
+        tiltX = 0
+        tiltY = 1
+        rotZ = 0
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
-            "f" * 14,
+            "B" * 14,
             packetCount,
             mode,
             state,
