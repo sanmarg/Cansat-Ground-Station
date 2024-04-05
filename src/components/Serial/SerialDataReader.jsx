@@ -4,15 +4,14 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [data, setData] = useState(null);
+  const [reader, setReader] = useState(null);
   let keepReading = true;
-  let reader;
   let closedPromise;
-  
+
   const readData = async () => {
     console.log('readData called'); // Debug log
     while (port && port.readable && keepReading) {
       console.log('Port is readable'); // Debug log
-      reader = port.readable.getReader();
       try {
         while (true) {
           const { value, done } = await reader.read();
@@ -27,15 +26,9 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
         }
       } catch (error) {
         console.error('Error reading data:', error);
-      } finally {
-        reader.releaseLock();
       }
-    } 
-    await port.close();
+    }
   };
-  
-
-  
 
   useEffect(() => {
     if (data) {
@@ -53,28 +46,27 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
         }
         await newPort.open({ baudRate: baudRate });
         setPort(newPort);
+        setReader(newPort.readable.getReader());
         setIsConnected(true);
       } else {
         if (port) {
-          keepReading = false;
-          // Force reader.read() to resolve immediately and subsequently
-          // call reader.releaseLock() in the loop example above.
-          reader.cancel();
-          await closedPromise;
           setIsConnected(false);
+          reader.releaseLock();
+          setReader(null);
+          await port.close();
         }
       }
     } catch (err) {
       window.alert(err.message);
     }
   };
-  
+
   useEffect(() => {
     if (isConnected && port) {
-      closedPromise=readData();
+      closedPromise = readData();
     }
   }, [isConnected, port]);
-  
+
 
   return (
     <div>
