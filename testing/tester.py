@@ -13,7 +13,7 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 try:
     while True:
         # Generate random data for telemetry
-        packetCount = 0
+        packetCount = 56.69
         mode = 0
         state = 0
         altitude = 0
@@ -25,12 +25,12 @@ try:
         gpsLongitude = 0
         gpsSats = 0
         tiltX = 0
-        tiltY = 1
+        tiltY = 0
         rotZ = 0
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
-            "B" * 14,
+            "f" + "B" * 13,  # Format string for 1 Float32 followed by 13 unsigned bytes
             packetCount,
             mode,
             state,
@@ -43,8 +43,8 @@ try:
             gpsLongitude,
             gpsSats,
             tiltX,
-            tiltY,
             rotZ,
+            tiltY,
         )
 
         # Send the telemetry data over the serial port

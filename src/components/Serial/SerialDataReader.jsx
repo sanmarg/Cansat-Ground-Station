@@ -6,12 +6,9 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
   const [data, setData] = useState(null);
   const [reader, setReader] = useState(null);
   let keepReading = true;
-  let closedPromise;
 
-  const readData = async () => {
-    console.log('readData called'); // Debug log
+  async function readData() {
     while (port && port.readable && keepReading) {
-      console.log('Port is readable'); // Debug log
       try {
         while (true) {
           const { value, done } = await reader.read();
@@ -19,9 +16,7 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
             console.log('Serial port closed.');
             break;
           }
-
           console.log(value);
-
           setData(value);
         }
       } catch (error) {
@@ -30,47 +25,57 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
     }
   };
 
+  async function connect() {
+    try {
+      const newPort = await navigator.serial.requestPort();
+      if (!newPort) {
+        console.error('No port found'); // Debug log
+        return;
+      }
+      await newPort.open({ baudRate: baudRate });
+      setPort(newPort);
+      setReader(newPort.readable.getReader());
+      setIsConnected(true);
+    }
+    catch (err) {
+      window.alert(err.message);
+    }
+  };
+
+  async function disconnect() {
+    try {
+      if (reader) {
+        reader.releaseLock();
+        setReader(null);
+      }
+
+      if (port) {
+        await port.close();
+        setPort(null);
+      }
+
+      setIsConnected(false);
+    } catch (err) {
+      window.alert(err.message);
+    }
+  };
+
+
+  useEffect(() => {
+    if (isConnected && port) {
+      readData();
+    }
+  }, [isConnected, port]);
+
   useEffect(() => {
     if (data) {
       onDataReceived(data);
     }
   }, [data]);
 
-  const connectToSerial = async () => {
-    try {
-      if (!isConnected) {
-        const newPort = await navigator.serial.requestPort();
-        if (!newPort) {
-          console.error('No port found'); // Debug log
-          return;
-        }
-        await newPort.open({ baudRate: baudRate });
-        setPort(newPort);
-        setReader(newPort.readable.getReader());
-        setIsConnected(true);
-      } else {
-        if (port) {
-          setIsConnected(false);
-          reader.releaseLock();
-          setReader(null);
-          await port.close();
-        }
-      }
-    } catch (err) {
-      window.alert(err.message);
-    }
-  };
-
-  useEffect(() => {
-    if (isConnected && port) {
-      closedPromise = readData();
-    }
-  }, [isConnected, port]);
-
-
   return (
     <div>
-      <button onClick={connectToSerial}>
+      <button onClick={!isConnected ? connect : disconnect}>
         {isConnected ? "Disconnect" : "Connect"}
       </button>
     </div>
