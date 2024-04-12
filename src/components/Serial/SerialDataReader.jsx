@@ -6,9 +6,10 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [data, setData] = useState(null);
   const [reader, setReader] = useState(null);
+  let keepReading = true;
 
   async function readData() {
-    while (port && port.readable) {
+    while (port && port.readable && keepReading) {
       try {
         while (true) {
           const { value, done } = await reader.read();
