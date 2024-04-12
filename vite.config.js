@@ -1,16 +1,8 @@
-import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
-  optimizeDeps: {
-    include: [
-      '@mui/material/Button',
-      '@mui/material/FormControl',
-      '@mui/material/InputLabel',
-      '@mui/material/NativeSelect',
-      '@mui/material/MenuItem',
-    ],
-  },
-  base:""
-});
+  plugins: [react()],
+  base: ""
+})
