@@ -1,22 +1,13 @@
-import "./App.css";
 import React, { useState, useEffect } from "react";
-import GraphComponent from "./components/GraphComponent";
-import Rocketmodel from "./components/Rocketmodel";
-import Navbar from "./components/Navbar/Navbar"
-import SerialDataReader from "./components/Serial/SerialDataReader";
-const App = () => {
-  const [data, setData] = useState([]);
+import Navbar from "./components/Navbar/Navbar";
 
-  const handleDataReceived = (newData) => {
-    // Update the data state with the new data
-    setData(prevData => [...prevData, newData]);
-  };
-
+function App() {
+  const [hasTriedAutoconnect, setHasTriedAutoconnect] = useState(false);
   return (
-    <div>
+    <>
       <Navbar />
-    </div>
+    </>
   );
-};
+}
 
 export default App;
