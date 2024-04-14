@@ -3,20 +3,30 @@ import React, { useState, useEffect } from "react";
 import GraphComponent from "./components/GraphComponent";
 import Rocketmodel from "./components/Rocketmodel";
 import Navbar from "./components/Navbar/Navbar";
-import ParentComponent from "./components/ParentComponent";
-import SerialDataReader from "./components/Serial/SerialDataReader";
-const App = () => {
-  const [data, setData] = useState([]);
 
-  const handleDataReceived = (newData) => {
-    // Update the data state with the new data
-    setData(prevData => [...prevData, newData]);
-  };
+const App = () => {
+  const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOrientation({
+        x: Math.random() * 360,
+        y: Math.random() * 360,
+        z: Math.random() * 360,
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
-     <ParentComponent/>
-      <Navbar />
+      <div className="Navbar-container">
+        <Navbar />
+      </div>
+      <div className="Rocket-container">
+      {/* <Rocketmodel orientation={orientation} /> */}
+      </div>
     </div>
   );
 };

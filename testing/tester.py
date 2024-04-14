@@ -4,8 +4,9 @@ import random
 import time
 
 # Define the serial port and baud rate
-serial_port = "COM1"  # Change this to match your serial port
+serial_port = "COM8"  # Change this to match your serial port
 baud_rate = 115200
+packetCount = 0
 
 # Open the serial port
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
@@ -13,7 +14,7 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 try:
     while True:
         # Generate random data for telemetry
-        packetCount = 56.69
+        packetCount =packetCount + 1
         mode = 0
         state = 0
         altitude = 0
@@ -45,7 +46,7 @@ try:
             tiltX,
             rotZ,
             tiltY,
-        )
+        ) + b'\x0a'
 
         # Send the telemetry data over the serial port
         ser.write(telemetry_data)
