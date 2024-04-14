@@ -6,7 +6,7 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
   const [reader, setReader] = useState(null);
 
   async function readData() {
-    let receivedData = new Uint8Array();
+    let dataBuffer = [];
 
     while (port && port.readable) {
       try {
@@ -16,18 +16,26 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
             console.log("Serial port closed.");
             break;
           }
-          const newData = new Uint8Array(receivedData.length + value.length);
-          newData.set(receivedData);
-          newData.set(value, receivedData.length);
-          receivedData = newData;
-
-          const newlineIndex = receivedData.indexOf(10);
-          if (newlineIndex !== -1) {
-            const dataBeforeNewline = receivedData.slice(0, newlineIndex);
-            console.log("Received data:", packetCount);
-            receivedData = receivedData.slice(newlineIndex + 1);
-            const dataView = new DataView(dataBeforeNewline.buffer);
+          dataBuffer = dataBuffer.concat(Array.from(value));
+          if (dataBuffer.length >= 47) {
+            const receivedData = new Uint8Array(dataBuffer.slice(0, 47));
+            const dataView = new DataView(receivedData.buffer);
             const packetCount = dataView.getFloat32(0, true);
+            const mode = dataView.getUint8(4);
+            const state = dataView.getUint8(5);
+            const altitude = dataView.getFloat32(6, true);
+            const temperature = dataView.getFloat32(10, true);
+            const pressure = dataView.getFloat32(14, true);
+            const voltage = dataView.getFloat32(18, true);
+            const gpsTime = dataView.getFloat32(22, true);
+            const gpsLatitude = dataView.getFloat32(26, true);
+            const gpsLongitude = dataView.getFloat32(30, true);
+            const gpsSats = dataView.getUint8(34);
+            const tiltX = dataView.getFloat32(35, true);
+            const tiltY = dataView.getFloat32(39, true);
+            const rotZ = dataView.getFloat32(43, true);
+            console.log(tiltX + " " + tiltY + " " + rotZ);
+            dataBuffer = dataBuffer.slice(47);
           }
         }
       } catch (error) {
@@ -71,10 +79,15 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
   }
 
   useEffect(() => {
-    if (isConnected && port) {
+    if (isConnected && port && reader) {
       readData();
     }
-  }, [isConnected, port]);
+    return () => {
+      if (reader) {
+        reader.releaseLock();
+      }
+    };
+  }, [isConnected, port, reader]);
 
   return (
     <div>
