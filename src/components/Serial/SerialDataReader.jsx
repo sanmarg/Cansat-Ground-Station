@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Button from '@mui/material/Button';
 
-const SerialDataReader = ({ onDataReceived, baudRate }) => {
+const SerialDataReader = ({ baudRate }) => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
@@ -20,6 +21,7 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
           if (dataBuffer.length >= 47) {
             const receivedData = new Uint8Array(dataBuffer.slice(0, 47));
             const dataView = new DataView(receivedData.buffer);
+
             const packetCount = dataView.getFloat32(0, true);
             const mode = dataView.getUint8(4);
             const state = dataView.getUint8(5);
@@ -91,9 +93,19 @@ const SerialDataReader = ({ onDataReceived, baudRate }) => {
 
   return (
     <div>
-      <button onClick={!isConnected ? connect : disconnect}>
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: 'white',
+          color: 'black',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.8)'
+          }
+        }}
+        onClick={!isConnected ? connect : disconnect}
+      >
         {isConnected ? "Disconnect" : "Connect"}
-      </button>
+      </Button>
     </div>
   );
 };
