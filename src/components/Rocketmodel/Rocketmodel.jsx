@@ -1,16 +1,14 @@
 import React, { useState } from "react";
+import { Box } from "@mui/material";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial, Euler } from "three";
 
 const Rocketmodel = ({ orientation }) => {
-  // Load GLTF model
   const { scene } = useGLTF("rocket.gltf");
 
-  // Create material
   const material = new MeshStandardMaterial({ color: 0xff0000 });
 
-  // Convert orientation to radians
   const euler = new Euler(
     (orientation.x || 0) * (Math.PI / 180),
     (orientation.y || 0) * (Math.PI / 180),
@@ -18,13 +16,19 @@ const Rocketmodel = ({ orientation }) => {
   );
 
   return (
-    <div style={{ width: "440px", height: "440px" }}>
+    <Box
+      sx={{
+        width: "440px",
+        height: "440px",
+        border: "2px solid #000",
+      }}
+    >
       <Canvas
         className="cursor-pointer"
         frameloop="demand"
         camera={{ position: [0, 0, 10], fov: 45 }}
       >
-        <OrbitControls />
+        <OrbitControls enableRotate={false} />
         <primitive
           object={scene}
           scale={[0.01, 0.01, 0.01]}
@@ -32,7 +36,7 @@ const Rocketmodel = ({ orientation }) => {
           rotation={euler}
         />
       </Canvas>
-    </div>
+    </Box>
   );
 };
 
