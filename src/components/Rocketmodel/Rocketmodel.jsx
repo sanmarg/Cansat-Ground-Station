@@ -5,9 +5,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial, Euler } from "three";
 
 const Rocketmodel = ({ orientation }) => {
-  const { scene } = useGLTF("rocket.gltf");
-
-  const material = new MeshStandardMaterial({ color: 0xff0000 });
+  const { scene } = useGLTF("rocket.glb");
 
   const euler = new Euler(
     (orientation.x || 0) * (Math.PI / 180),
@@ -26,13 +24,13 @@ const Rocketmodel = ({ orientation }) => {
       <Canvas
         className="cursor-pointer"
         frameloop="demand"
-        camera={{ position: [0, 0, 10], fov: 45 }}
       >
+        <ambientLight intensity={2} />
+
         <OrbitControls enableRotate={false} />
         <primitive
           object={scene}
-          scale={[0.01, 0.01, 0.01]}
-          material={material}
+          scale={[0.1, 0.1, 0.1]}
           rotation={euler}
         />
       </Canvas>

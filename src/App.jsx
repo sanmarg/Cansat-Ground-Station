@@ -10,45 +10,49 @@ const App = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setOrientation({
-        x: Math.random() * 360,
-        y: Math.random() * 360,
-        z: Math.random() * 360,
-      });
-    }, 100);
+      setOrientation(prevOrientation => ({
+        x: (prevOrientation.x + 1) % 360,
+        y: (prevOrientation.y + 1) % 360,
+        z: (prevOrientation.z + 1) % 360,
+      }));
+    }, 10);
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => clearInterval(interval);
+}, []);
 
-  useEffect(() => {
-    const generateRandomData = () => {
-      const data = [];
-      for (let i = 0; i < 10; i++) {
-        data.push({ x: i, y: Math.random() * 100 });
-      }
-      return data;
-    };
+useEffect(() => {
+  const generateRandomData = () => {
+    const data = [];
+    for (let i = 0; i < 10; i++) {
+      data.push({ x: i, y: Math.random() * 100 });
+    }
+    return data;
+  };
 
+  setGraphData(generateRandomData());
+
+  const interval = setInterval(() => {
     setGraphData(generateRandomData());
+  }, 500);
 
-    const interval = setInterval(() => {
-      setGraphData(generateRandomData());
-    }, 500);
+  return () => clearInterval(interval);
+}, []);
 
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
+return (
+  <div>
     <div>
+      <Navbar />
+    </div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div>
-        <Navbar />
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Rocketmodel orientation={orientation} />
+      </div>
+      <div>
         <GraphComponent data={graphData} />
       </div>
-    </div >
-  );
+    </div>
+  </div >
+);
 };
 
 export default App;
