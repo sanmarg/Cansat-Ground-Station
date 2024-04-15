@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box } from '@mui/material';
 
 const GraphComponent = ({ data }) => {
   const svgRef = useRef();
@@ -48,7 +49,9 @@ const GraphComponent = ({ data }) => {
 
 
   return (
-    <svg ref={svgRef} width={440} height={440}></svg>
+    <Box sx={{ border: '2px solid #000' }}>
+      <svg ref={svgRef} width={440} height={440}></svg>
+    </Box>
   );
 };
 

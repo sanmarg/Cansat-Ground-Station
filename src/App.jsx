@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
+  const [graphData, setGraphData] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,7 +15,25 @@ const App = () => {
         y: Math.random() * 360,
         z: Math.random() * 360,
       });
-    }, 1000);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const generateRandomData = () => {
+      const data = [];
+      for (let i = 0; i < 10; i++) {
+        data.push({ x: i, y: Math.random() * 100 });
+      }
+      return data;
+    };
+
+    setGraphData(generateRandomData());
+
+    const interval = setInterval(() => {
+      setGraphData(generateRandomData());
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -26,9 +45,9 @@ const App = () => {
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Rocketmodel orientation={orientation} />
+        <GraphComponent data={graphData} />
       </div>
-
-    </div>
+    </div >
   );
 };
 
