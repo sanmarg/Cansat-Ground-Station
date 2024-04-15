@@ -5,6 +5,7 @@ const SerialDataReader = ({ baudRate }) => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
+  const [serialSupported, setSerialSupported] = useState('serial' in navigator);
 
   async function readData() {
     let dataBuffer = [];
@@ -101,9 +102,14 @@ const SerialDataReader = ({ baudRate }) => {
           '&:hover': {
             backgroundColor: !isConnected ? '#006400' : '#8B0000'
           },
+          '&:disabled': {
+            backgroundColor: 'red',
+            color: 'white',
+          },
           minWidth: '130px'
         }}
         onClick={!isConnected ? connect : disconnect}
+        disabled={!serialSupported}
       >
         {isConnected ? "Disconnect" : "Connect"}
       </Button>
