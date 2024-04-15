@@ -4,8 +4,6 @@
 .Rocket-container {
   margin: 0;
   padding: 0;
-  /* width: auto; */
-  /* height: auto; */
   border: 2px solid black;
   box-sizing: border-box;
 }
