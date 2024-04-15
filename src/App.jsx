@@ -24,9 +24,9 @@ const App = () => {
       <div className="Navbar-container">
         <Navbar />
       </div>
-      <div className="Rocket-container">
-      {/* <Rocketmodel orientation={orientation} /> */}
-      </div>
+      {/* <div className="Rocket-container">
+      <Rocketmodel orientation={orientation} />
+      </div> */}
     </div>
   );
 };

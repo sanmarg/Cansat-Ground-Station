@@ -1,15 +1,3 @@
-.container {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 10px;
-  width: 100vw;
-  position: fixed;
-  justify-content: space-between;
-  place-items: center;
-  top: 0;
-  display: flex;
-}
-
 .logo-container {
   max-height: 50px;
   margin-right: auto;

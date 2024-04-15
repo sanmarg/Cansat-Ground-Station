@@ -4,9 +4,10 @@ import random
 import time
 
 # Define the serial port and baud rate
-serial_port = "COM8"  # Change this to match your serial port
+serial_port = "COM1"  # Change this to match your serial port
 baud_rate = 115200
 packetCount = 0
+mode = 0
 
 # Open the serial port
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
@@ -31,7 +32,7 @@ try:
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
-            "f" + "B" * 13,  # Format string for 1 Float32 followed by 13 unsigned bytes
+            "fBBfffffffBfff",  # Format string for 1 Float32 followed by 13 unsigned bytes
             packetCount,
             mode,
             state,

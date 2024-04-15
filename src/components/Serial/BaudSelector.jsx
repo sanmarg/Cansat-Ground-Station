@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 
 const BaudSelector = ({ value, onChange }) => {
   return (
-    <Box sx={{ minWidth: 10 }}>
+    <Box sx={{ minWidth: 10 }}> 
       <Select
         value={value}
         onChange={onChange}

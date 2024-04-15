@@ -96,11 +96,12 @@ const SerialDataReader = ({ baudRate }) => {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: 'white',
-          color: 'black',
+          backgroundColor: !isConnected ? 'green' : 'red',
+          color: 'white',
           '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.8)'
-          }
+            backgroundColor: !isConnected ? '#006400' : '#8B0000'
+          },
+          minWidth: '130px'
         }}
         onClick={!isConnected ? connect : disconnect}
       >
