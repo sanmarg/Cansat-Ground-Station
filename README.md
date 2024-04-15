@@ -1,8 +1,60 @@
-# React + Vite
+# CanSat Ground Station
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the CanSat Ground Station project! This project aims to provide a ground station software for CanSat projects using Vite and React.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js and npm installed on your local machine.
+- Git installed on your local machine.
+
+### Installation
+
+1. Clone the repository to your local machine:
+   ```sh
+   git clone https://github.com/your-username/cansat-ground-station.git
+   ```
+2. cd cansat-ground-station
+   ```sh
+   cd cansat-ground-station
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+### Running the Development Server
+
+To start the development server, run:
+
+```sh
+npm run dev
+```
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these guidelines:
+
+1. Fork the repository and clone it to your local machine.
+2. Create a new branch for your feature or bug fix:
+   ```sh
+   git checkout -b feature/my-feature
+   ```
+3. Make your changes and ensure they follow the project's coding style.
+4. Commit your changes with descriptive commit messages:
+   ```sh
+   git commit -am 'Add a new feature'
+   ```
+5. Push your branch to your fork:
+   ```sh
+   git push origin feature/my-feature
+   ```
+6. Finally, open a pull request on the original repository's main branch.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
+
