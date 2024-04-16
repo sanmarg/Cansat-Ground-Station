@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import GraphComponent from "./components/GraphComponent";
+import GraphComponent from "./components/GraphComponent/GraphComponent";
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -13,7 +13,7 @@ const App = () => {
       setOrientation(prevOrientation => ({
         x: (prevOrientation.x + 1) % 360,
         y: (prevOrientation.y + 1) % 360,
-        z: (prevOrientation.z + 1) % 360,
+        z: (prevOrientation.z + 10) % 360,
       }));
     }, 10);
 

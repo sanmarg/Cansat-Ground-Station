@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { MeshStandardMaterial, Euler } from "three";
+import { Euler } from "three";
 
 const Rocketmodel = ({ orientation }) => {
   const { scene } = useGLTF("rocket.glb");
@@ -27,7 +27,10 @@ const Rocketmodel = ({ orientation }) => {
       >
         <ambientLight intensity={2} />
 
-        <OrbitControls enableRotate={false} />
+        <OrbitControls
+          enableRotate={false}
+          enablePan={false}
+          enableZoom={false} />
         <primitive
           object={scene}
           scale={[0.1, 0.1, 0.1]}
