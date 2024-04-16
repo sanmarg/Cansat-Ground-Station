@@ -8,6 +8,7 @@ serial_port = "COM1"  # Change this to match your serial port
 baud_rate = 115200
 packetCount = 0
 mode = 0
+rotZ = 0
 
 # Open the serial port
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
@@ -16,9 +17,9 @@ try:
     while True:
         # Generate random data for telemetry
         packetCount = packetCount + 1
-        mode = 0
-        state = 0
-        altitude = 0
+        mode = 1
+        state = 2
+        altitude = 3
         temperature = 0
         pressure = 0
         voltage = 0
@@ -28,11 +29,11 @@ try:
         gpsSats = 0
         tiltX = 0
         tiltY = 0
-        rotZ = 0
+        rotZ = rotZ + 1
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
-            "fBBfffffffBfff",  # Format string for 1 Float32 followed by 13 unsigned bytes
+            "=fBBfffffffBfff",
             packetCount,
             mode,
             state,
