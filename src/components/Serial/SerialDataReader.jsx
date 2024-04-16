@@ -5,7 +5,7 @@ const SerialDataReader = ({ baudRate }) => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
-  const [serialSupported, setSerialSupported] = useState('serial' in navigator);
+  const serialSupported ='serial' in navigator;
 
   async function readData() {
     let dataBuffer = [];
