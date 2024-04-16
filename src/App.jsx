@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import GraphComponent from "./components/GraphComponent/GraphComponent";
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Navbar from "./components/Navbar/Navbar";
-
+import Counter from "./features/counter/Counter";
 const App = () => {
   const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
   const [graphData, setGraphData] = useState([]);
@@ -12,8 +12,8 @@ const App = () => {
     const interval = setInterval(() => {
       setOrientation(prevOrientation => ({
         x: (prevOrientation.x + 1) % 360,
-        y: (prevOrientation.y + 1) % 360,
-        z: (prevOrientation.z + 10) % 360,
+        // y: (prevOrientation.y + 1) % 90,
+        // z: (prevOrientation.z + 10) % 360,
       }));
     }, 10);
 
@@ -40,7 +40,7 @@ useEffect(() => {
 
 return (
   <div>
-    <div>
+    {/* <div>
       <Navbar />
     </div>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -50,7 +50,8 @@ return (
       <div>
         <GraphComponent data={graphData} />
       </div>
-    </div>
+    </div> */}
+<Counter/>
   </div >
 );
 };

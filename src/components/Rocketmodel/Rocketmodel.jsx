@@ -25,7 +25,7 @@ const Rocketmodel = ({ orientation }) => {
         className="cursor-pointer"
         frameloop="demand"
       >
-        <ambientLight intensity={2} />
+        <ambientLight intensity={5} />
 
         <OrbitControls
           enableRotate={false}
@@ -33,8 +33,9 @@ const Rocketmodel = ({ orientation }) => {
           enableZoom={false} />
         <primitive
           object={scene}
-          scale={[0.1, 0.1, 0.1]}
+          scale={[.1, 0.1, 0.05]}
           rotation={euler}
+          position={[0, 0, .01]}
         />
       </Canvas>
     </Box>

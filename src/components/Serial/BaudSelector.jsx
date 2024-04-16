@@ -13,7 +13,7 @@ const BaudSelector = ({ value, onChange }) => {
           backgroundColor: 'white',
           '&:hover': {
             backgroundColor: 'white',
-            color: 'black'
+            color: 'grey'
           },
           maxHeight: 37,
           minWidth: 100

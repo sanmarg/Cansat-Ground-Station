@@ -37,6 +37,22 @@ const SerialDataReader = ({ baudRate }) => {
             const tiltX = dataView.getFloat32(35, true);
             const tiltY = dataView.getFloat32(39, true);
             const rotZ = dataView.getFloat32(43, true);
+            const dataSend = {
+              packetCount,
+              mode,
+              state,
+              altitude,
+              temperature,
+              pressure,
+              voltage,
+              gpsTime,
+              gpsLatitude,
+              gpsLongitude,
+              gpsSats,
+              tiltX,
+              tiltY,
+              rotZ
+            };
             console.log(tiltX + " " + tiltY + " " + rotZ);
             dataBuffer = dataBuffer.slice(47);
           }
