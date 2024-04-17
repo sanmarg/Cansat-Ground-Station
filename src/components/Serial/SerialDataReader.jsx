@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { pushData } from "../../features/telemetry/TelemetrySlice";
 
 const SerialDataReader = ({ baudRate }) => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
-  const serialSupported ='serial' in navigator;
+  const serialSupported = "serial" in navigator;
+  const dispatch = useDispatch();
 
   async function readData() {
     let dataBuffer = [];
@@ -51,9 +54,9 @@ const SerialDataReader = ({ baudRate }) => {
               gpsSats,
               tiltX,
               tiltY,
-              rotZ
+              rotZ,
             };
-            console.log(tiltX + " " + tiltY + " " + rotZ);
+            dispatch(pushData(dataSend));
             dataBuffer = dataBuffer.slice(47);
           }
         }
@@ -113,16 +116,16 @@ const SerialDataReader = ({ baudRate }) => {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: !isConnected ? 'green' : 'red',
-          color: 'white',
-          '&:hover': {
-            backgroundColor: !isConnected ? '#006400' : '#8B0000'
+          backgroundColor: !isConnected ? "green" : "red",
+          color: "white",
+          "&:hover": {
+            backgroundColor: !isConnected ? "#006400" : "#8B0000",
           },
-          '&:disabled': {
-            backgroundColor: 'red',
-            color: 'white',
+          "&:disabled": {
+            backgroundColor: "red",
+            color: "white",
           },
-          minWidth: '130px'
+          minWidth: "130px",
         }}
         onClick={!isConnected ? connect : disconnect}
         disabled={!serialSupported}

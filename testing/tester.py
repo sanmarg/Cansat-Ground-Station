@@ -29,7 +29,7 @@ try:
         gpsSats = 0
         tiltX = 0
         tiltY = 0
-        rotZ = rotZ + 1
+        rotZ = rotZ + 5
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
@@ -57,7 +57,7 @@ try:
         print("Sent telemetry data:", telemetry_data)
 
         # Wait for 1 second
-        time.sleep(1)
+        time.sleep(0.1)
 
 except KeyboardInterrupt:
     print("Stopping script...")

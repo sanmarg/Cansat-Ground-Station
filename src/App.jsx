@@ -1,59 +1,56 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import GraphComponent from "./components/GraphComponent/GraphComponent";
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Navbar from "./components/Navbar/Navbar";
-import Counter from "./features/counter/Counter";
+
 const App = () => {
   const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
   const [graphData, setGraphData] = useState([]);
+  const telemetryData = useSelector((state) => state.telemetry.value);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setOrientation(prevOrientation => ({
-        x: (prevOrientation.x + 1) % 360,
-        // y: (prevOrientation.y + 1) % 90,
-        // z: (prevOrientation.z + 10) % 360,
-      }));
+      if (telemetryData) {
+        setOrientation({
+          x: telemetryData.tiltX,
+          y: telemetryData.tiltY,
+          z: telemetryData.rotZ,
+        });
+      } else {
+        setOrientation({
+          x: 0,
+          y: 0,
+          z: 0,
+        });
+      }
     }, 10);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, [telemetryData]);
 
-useEffect(() => {
-  const generateRandomData = () => {
-    const data = [];
-    for (let i = 0; i < 10; i++) {
-      data.push({ x: i, y: Math.random() * 100 });
+  useEffect(() => {
+    if (telemetryData) {
+      console.log("packetCount:", telemetryData.packetCount);
     }
-    return data;
-  };
+  }, [telemetryData]);
 
-  setGraphData(generateRandomData());
-
-  const interval = setInterval(() => {
-    setGraphData(generateRandomData());
-  }, 500);
-
-  return () => clearInterval(interval);
-}, []);
-
-return (
-  <div>
-    {/* <div>
-      <Navbar />
+  return (
+    <div>
+      <div>
+        <Navbar />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div>
+          <Rocketmodel orientation={orientation} />
+        </div>
+        <div>
+          {/* <GraphComponent data={graphData} /> */}
+        </div>
+      </div>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div>
-        <Rocketmodel orientation={orientation} />
-      </div>
-      <div>
-        <GraphComponent data={graphData} />
-      </div>
-    </div> */}
-<Counter/>
-  </div >
-);
+  );
 };
 
 export default App;
