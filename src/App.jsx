@@ -7,24 +7,15 @@ import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
-  const [graphData, setGraphData] = useState([]);
   const telemetryData = useSelector((state) => state.telemetry.value);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (telemetryData) {
-        setOrientation({
-          x: telemetryData.tiltX,
-          y: telemetryData.tiltY,
-          z: telemetryData.rotZ,
-        });
-      } else {
-        setOrientation({
-          x: 0,
-          y: 0,
-          z: 0,
-        });
-      }
+      setOrientation({
+        x: telemetryData.tiltX,
+        y: telemetryData.tiltY,
+        z: telemetryData.rotZ,
+      });
     }, 10);
 
     return () => clearInterval(interval);
@@ -44,9 +35,6 @@ const App = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
           <Rocketmodel orientation={orientation} />
-        </div>
-        <div>
-          {/* <GraphComponent data={graphData} /> */}
         </div>
       </div>
     </div>

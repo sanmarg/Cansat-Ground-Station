@@ -1,22 +1,30 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import React from "react";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { useDispatch, useSelector } from "react-redux";
+import { setBaudrate } from "../../features/configs/baudrateSlice";
 
-const BaudSelector = ({ value, onChange }) => {
+const BaudSelector = () => {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.baudrate.value);
+  const handleChange = (event) => {
+    dispatch(setBaudrate(event.target.value));
+  };
+
   return (
-    <Box sx={{ minWidth: 10 }}> 
+    <Box sx={{ minWidth: 10 }}>
       <Select
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
         sx={{
-          backgroundColor: 'white',
-          '&:hover': {
-            backgroundColor: 'white',
-            color: 'grey'
+          backgroundColor: "white",
+          "&:hover": {
+            backgroundColor: "white",
+            color: "grey",
           },
           maxHeight: 37,
-          minWidth: 100
+          minWidth: 100,
         }}
       >
         <MenuItem value={9600}>9600</MenuItem>

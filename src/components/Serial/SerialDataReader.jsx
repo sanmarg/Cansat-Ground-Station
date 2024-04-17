@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { pushData } from "../../features/telemetry/TelemetrySlice";
 
-const SerialDataReader = ({ baudRate }) => {
+const SerialDataReader = () => {
+  const baudRate = useSelector((state) => state.baudrate.value);
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);

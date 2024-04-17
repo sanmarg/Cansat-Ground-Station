@@ -33,9 +33,9 @@ const Rocketmodel = ({ orientation }) => {
           enableZoom={false} />
         <primitive
           object={scene}
-          scale={[.1, 0.1, 0.05]}
+          scale={[0.1*1.45, 0.1*1.45, 0.05*1.45]}
           rotation={euler}
-          position={[0, 0, .01]}
+          position={[0, 0, 0]}
         />
       </Canvas>
     </Box>
