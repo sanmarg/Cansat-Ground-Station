@@ -1,3 +1,8 @@
+[![Build](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/deploy.yaml)
+![GitHub Release](https://img.shields.io/github/v/release/Gagan-Space/Cansat-Ground-Station)
+![GitHub License](https://img.shields.io/github/license/Gagan-Space/Cansat-Ground-Station)
+![GitHub Repo stars](https://img.shields.io/github/stars/Gagan-Space/Cansat-Ground-Station?style=flat)
+
 # CanSat Ground Station
 
 Welcome to the CanSat Ground Station project! This project aims to provide a ground station software for CanSat projects using Vite and React.
@@ -15,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone the repository to your local machine:
    ```sh
-   git clone https://github.com/your-username/cansat-ground-station.git
+   https://github.com/Gagan-Space/Cansat-Ground-Station.git
    ```
 2. cd cansat-ground-station
    ```sh
@@ -46,7 +51,7 @@ If you'd like to contribute to this project, please follow these guidelines:
 3. Make your changes and ensure they follow the project's coding style.
 4. Commit your changes with descriptive commit messages:
    ```sh
-   git commit -am 'Add a new feature'
+   git commit -am "Add a new feature"
    ```
 5. Push your branch to your fork:
    ```sh
@@ -57,4 +62,3 @@ If you'd like to contribute to this project, please follow these guidelines:
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
-

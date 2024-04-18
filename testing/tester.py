@@ -1,6 +1,5 @@
 import serial
 import struct
-import random
 import time
 
 # Define the serial port and baud rate
