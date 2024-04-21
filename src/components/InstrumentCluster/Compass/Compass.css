@@ -1,0 +1,11 @@
+.contianer {
+  position: relative;
+}
+
+.border-container,
+.heading-container,
+.pointer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

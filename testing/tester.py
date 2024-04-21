@@ -3,7 +3,7 @@ import struct
 import time
 
 # Define the serial port and baud rate
-serial_port = "COM1"  # Change this to match your serial port
+serial_port = "COM8"  # Change this to match your serial port
 baud_rate = 115200
 packetCount = 0
 mode = 0
@@ -28,7 +28,7 @@ try:
         gpsSats = 0
         tiltX = 0
         tiltY = 0
-        rotZ = rotZ + 5
+        rotZ = rotZ + 0.05
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
@@ -45,8 +45,8 @@ try:
             gpsLongitude,
             gpsSats,
             tiltX,
-            rotZ,
             tiltY,
+            rotZ
         )
 
         # Send the telemetry data over the serial port
@@ -56,7 +56,7 @@ try:
         print("Sent telemetry data:", telemetry_data)
 
         # Wait for 1 second
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 except KeyboardInterrupt:
     print("Stopping script...")
