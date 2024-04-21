@@ -6,6 +6,7 @@ import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Navbar from "./components/Navbar/Navbar";
 import AirSpeed from "./components/InstrumentCluster/AirSpeed/AirSpeed";
 import Compass from "./components/InstrumentCluster/Compass/Compass";
+import Altimeter from "./components/InstrumentCluster/Altimeter/Altimeter";
 
 const App = () => {
   const [orientation, setOrientation] = useState({ x: 0, y: 0, z: 0 });
@@ -36,13 +37,8 @@ const App = () => {
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
-          <Rocketmodel orientation={orientation} />
-        </div>
-        <div style={{ margin: "200px" }}>
-          <AirSpeed value={telemetryData.rotZ} />
-        </div>
-        <div style={{ margin: "200px" }}>
-          <Compass value={telemetryData.rotZ} />
+          {/* <Compass /> */}
+          <Altimeter />
         </div>
       </div>
     </div>
