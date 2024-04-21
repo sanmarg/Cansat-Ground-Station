@@ -11,7 +11,6 @@ const GraphComponent = ({ data }) => {
 
       const xScale = d3.scaleTime().range([0, 720]);
       const yScale = d3.scaleLinear().range([440, 0]);
-
       const xAxis = d3.axisBottom().scale(xScale);
       const yAxis = d3.axisLeft().scale(yScale);
 
