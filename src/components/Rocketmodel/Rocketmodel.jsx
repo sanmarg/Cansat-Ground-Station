@@ -4,7 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Euler } from "three";
 
-const Rocketmodel = ({ orientation }) => {
+const Rocketmodel = ({ initialOrientation }) => {
+  const [orientation, setOrientation] = useState(initialOrientation || { x: 0, y: 0, z: 0 });
   const { scene } = useGLTF("rocket.glb");
 
   const euler = new Euler(
@@ -40,6 +41,10 @@ const Rocketmodel = ({ orientation }) => {
       </Canvas>
     </Box>
   );
+};
+
+Rocketmodel.defaultProps = {
+  initialOrientation: { x: 0, y: 0, z: 0 }
 };
 
 export default Rocketmodel;

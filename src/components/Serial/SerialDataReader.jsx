@@ -14,7 +14,7 @@ const SerialDataReader = () => {
   async function readData() {
     let dataBuffer = [];
 
-    while (port && port.readable) {
+    while (isConnected && port.readable) {
       try {
         while (true) {
           const { value, done } = await reader.read();
@@ -85,6 +85,7 @@ const SerialDataReader = () => {
 
   async function disconnect() {
     try {
+      setIsConnected(false);
       if (reader) {
         reader.releaseLock();
         setReader(null);
@@ -94,23 +95,19 @@ const SerialDataReader = () => {
         await port.close();
         setPort(null);
       }
-
-      setIsConnected(false);
     } catch (err) {
       window.alert(err.message);
     }
   }
 
   useEffect(() => {
-    if (isConnected && port && reader) {
-      readData();
-    }
+    readData();
     return () => {
       if (reader) {
         reader.releaseLock();
       }
     };
-  }, [isConnected, port, reader]);
+  }, [isConnected, port]);
 
   return (
     <div>

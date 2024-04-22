@@ -1,9 +1,17 @@
 .container {
   position: relative;
+  width: 300px;
+  height: 300px;
 }
 
-.test {
+.pressure-container,
+.tick-container,
+.small-needle-container,
+.needle-container,
+.border-container {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
 }
