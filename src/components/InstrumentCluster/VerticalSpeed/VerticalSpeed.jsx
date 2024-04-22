@@ -6,8 +6,8 @@ import Border from "../../../Assets/img/fi_circle.svg?react";
 
 const VerticalSpeed = ({ verticalSpeed = 0, width = 300, height = 300 }) => {
   return (
-    <div className="container">
-      <Vertical className="vertical-container" style={{ width, height }} />
+    <div className="container" style={{ width, height }}>
+      <Vertical className="vertical-container" />
       <Needle className="needle-container" />
       <Border className="border-container" />
     </div>

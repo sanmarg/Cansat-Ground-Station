@@ -5,7 +5,7 @@ import AirSpeed from "./components/InstrumentCluster/AirSpeed/AirSpeed";
 import Altimeter from "./components/InstrumentCluster/Altimeter/Altimeter";
 import VerticalSpeed from "./components/InstrumentCluster/VerticalSpeed/VerticalSpeed";
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
-
+import Heading from "./components/InstrumentCluster/Heading/Heading";
 const App = () => {
   const telemetryData = useSelector((state) => state.telemetry.value);
 
@@ -14,7 +14,7 @@ const App = () => {
       <div>
         <Navbar />
       </div>
-      <div style={{display:"flex"}}>
+      <div style={{ display: "flex" }}>
         <div>
           <Rocketmodel />
         </div>
@@ -22,6 +22,7 @@ const App = () => {
           <AirSpeed />
           <Altimeter />
           <VerticalSpeed />
+          <Heading />
         </div>
       </div>
     </>
