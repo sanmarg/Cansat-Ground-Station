@@ -5,7 +5,9 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Euler } from "three";
 
 const Rocketmodel = ({ initialOrientation }) => {
-  const [orientation, setOrientation] = useState(initialOrientation || { x: 0, y: 0, z: 0 });
+  const [orientation, setOrientation] = useState(
+    initialOrientation || { x: 0, y: 0, z: 0 }
+  );
   const { scene } = useGLTF("rocket.glb");
 
   const euler = new Euler(
@@ -20,6 +22,7 @@ const Rocketmodel = ({ initialOrientation }) => {
         width: "440px",
         height: "440px",
         border: "2px solid #000",
+        backgroundColor: "#2F2F2F",
       }}
     >
       <Canvas
@@ -31,10 +34,11 @@ const Rocketmodel = ({ initialOrientation }) => {
         <OrbitControls
           enableRotate={false}
           enablePan={false}
-          enableZoom={false} />
+          enableZoom={false}
+        />
         <primitive
           object={scene}
-          scale={[0.1*1.45, 0.1*1.45, 0.1*1.45]}
+          scale={[0.1 * 1.45, 0.1 * 1.45, 0.1 * 1.45]}
           rotation={euler}
           position={[0, 0, 0]}
         />
@@ -44,7 +48,7 @@ const Rocketmodel = ({ initialOrientation }) => {
 };
 
 Rocketmodel.defaultProps = {
-  initialOrientation: { x: 0, y: 0, z: 0 }
+  initialOrientation: { x: 0, y: 0, z: 0 },
 };
 
 export default Rocketmodel;
