@@ -5,32 +5,30 @@ import time
 # Define the serial port and baud rate
 serial_port = "COM1"  # Change this to match your serial port
 baud_rate = 115200
+header = 15
 packetCount = 0
 mode = 0
+state = 0
+altitude = 0
+temperature = 0
+pressure = 0
+voltage = 0
+gpsTime = 0
+gpsLatitude = 0
+gpsLongitude = 0
+gpsSats = 0
+tiltX = 0
+tiltY = 0
 rotZ = 0
+footer = 0
+
 
 # Open the serial port
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
 
 try:
     while True:
-        # Generate random data for telemetry
-        header = 15
-        packetCount = packetCount + 1
-        mode = 1
-        state = 2
-        altitude = 3
-        temperature = 0
-        pressure = 0
-        voltage = 0
-        gpsTime = 0
-        gpsLatitude = 0
-        gpsLongitude = 0
-        gpsSats = 0
-        tiltX = 0
-        tiltY = 0
-        rotZ = rotZ + 0.05
-        footer = 0
+        mode += 1
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
@@ -60,7 +58,7 @@ try:
         print("Sent telemetry data:", telemetry_data)
 
         # Wait for 1 second
-        time.sleep(0.05)
+        time.sleep(1)
 
 except KeyboardInterrupt:
     print("Stopping script...")
