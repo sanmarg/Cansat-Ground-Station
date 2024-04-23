@@ -18,11 +18,15 @@ const App = () => {
         <div>
           <Rocketmodel />
         </div>
-        <div style={{ display: "flex" }}>
-          <AirSpeed />
-          <Altimeter />
-          <VerticalSpeed />
-          <Heading />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex" }}>
+            <AirSpeed />
+            <Altimeter />
+          </div>
+          <div style={{ display: "flex" }}>
+            <VerticalSpeed />
+            <Heading />
+          </div>
         </div>
       </div>
     </>

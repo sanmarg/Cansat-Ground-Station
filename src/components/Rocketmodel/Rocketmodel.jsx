@@ -19,8 +19,8 @@ const Rocketmodel = ({ initialOrientation }) => {
   return (
     <Box
       sx={{
-        width: "440px",
-        height: "440px",
+        width: "600px",
+        height: "600px",
         border: "2px solid #000",
         backgroundColor: "#2F2F2F",
       }}
