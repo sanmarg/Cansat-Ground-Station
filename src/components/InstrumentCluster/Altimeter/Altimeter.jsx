@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./Altimeter.css";
 import AltimeterPressure from "../../../Assets/img/altitude_pressure.svg?react";
 import AltimeterTick from "../../../Assets/img/altitude_ticks.svg?react";
@@ -21,11 +20,11 @@ const Altimeter = ({
       <AltimeterTick className="tick-container" />
       <SmallNeedle
         className="small-needle-container"
-        style={{ transform: `rotate(${altitude*0.36}deg)` }}
+        style={{ transform: `rotate(${altitude*0.036}deg)` }}
       />
       <Needle
         className="needle-container"
-        style={{ transform: `rotate(${altitude*3.6 + 90}deg)` }}
+        style={{ transform: `rotate(${altitude*0.36 + 90}deg)` }}
       />
       <Border className="border-container" />
     </div>

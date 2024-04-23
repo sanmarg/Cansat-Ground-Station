@@ -1,5 +1,4 @@
 import "./VerticalSpeed.css";
-import { useEffect, useState } from "react";
 import Vertical from "../../../Assets/img/vertical_mechanics.svg?react";
 import Needle from "../../../Assets/img/fi_needle.svg?react";
 import Border from "../../../Assets/img/fi_circle.svg?react";
