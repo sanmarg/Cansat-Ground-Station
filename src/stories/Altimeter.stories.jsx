@@ -1,7 +1,7 @@
 import Altimeter from "../components/InstrumentCluster/Altimeter/Altimeter";
 
 export default {
-  title: "Altimeter",
+  title: "Instrument Cluster/Altimeter",
   component: Altimeter,
 };
 

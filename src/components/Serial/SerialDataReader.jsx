@@ -24,8 +24,8 @@ const SerialDataReader = () => {
             break;
           }
           dataBuffer = dataBuffer.concat(Array.from(value));
-          if (dataBuffer.length >= 49) {
-            const receivedData = new Uint8Array(dataBuffer.slice(0, 49));
+          if (dataBuffer.length >= 47) {
+            const receivedData = new Uint8Array(dataBuffer.slice(0, 47));
             console.log(receivedData);
             const dataView = new DataView(receivedData.buffer);
 
@@ -119,7 +119,7 @@ const SerialDataReader = () => {
         sx={{
           backgroundColor: !isConnected ? "green" : "red",
           color: "white",
-          border: !portFound ? "2px solid red" : null,
+          border: !portFound ? "2px solid #8B0000" : null,
           "&:hover": {
             backgroundColor: !isConnected ? "#006400" : "#8B0000",
           },

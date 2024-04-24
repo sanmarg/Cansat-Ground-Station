@@ -1,7 +1,7 @@
 import Compass from "../components/InstrumentCluster/Compass/Compass";
 
 export default {
-  title: "Compass",
+  title: "Instrument Cluster/Compass",
   component: Compass,
 };
 

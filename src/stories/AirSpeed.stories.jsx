@@ -1,7 +1,7 @@
 import AirSpeed from "../components/InstrumentCluster/AirSpeed/AirSpeed";
 
 export default {
-  title: "AirSpeed",
+  title: "Instrument Cluster/AirSpeed",
   component: AirSpeed,
 };
 
