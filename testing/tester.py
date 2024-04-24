@@ -28,7 +28,7 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 
 try:
     while True:
-        mode += 1
+        packetCount += 1
 
         # Pack the telemetry data into a binary string
         telemetry_data = struct.pack(
@@ -58,7 +58,7 @@ try:
         print("Sent telemetry data:", telemetry_data)
 
         # Wait for 1 second
-        time.sleep(1)
+        time.sleep(0.01)
 
 except KeyboardInterrupt:
     print("Stopping script...")
