@@ -9,7 +9,7 @@ const VerticalSpeed = ({ verticalSpeed = 0, width = 300, height = 300 }) => {
       <Vertical className="vertical-container" />
       <Needle
         className="needle-container"
-        style={{ transform: `translateY(${verticalSpeed}px)` }}
+        style={{ transform: `rotate(${verticalSpeed}deg)` }}
       />
       <Border className="border-container" />
     </div>
