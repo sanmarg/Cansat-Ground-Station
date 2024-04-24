@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import "./Navbar.css";
-import SerialDataReader from "../Serial/SerialDataReader";
-import BaudSelector from "../Serial/BaudSelector";
+import ConnectButton from "../Serial/UI/ConnectButton";
+import BaudSelector from "../Serial/UI/BaudSelector";
 import { AppBar, Toolbar, Box } from "@mui/material";
 
 const Navbar = () => {
@@ -13,7 +12,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1 }} />
           <BaudSelector />
           <Box sx={{ ml: 2 }}>
-            <SerialDataReader />
+            <ConnectButton />
           </Box>
         </Box>
       </Toolbar>
