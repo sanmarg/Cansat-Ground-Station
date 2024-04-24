@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
-import { setBaudrate } from "../../features/configs/baudrateSlice";
+import { setBaudrate } from "../../../features/configs/baudrateSlice";
 
 const BaudSelector = () => {
   const dispatch = useDispatch();
