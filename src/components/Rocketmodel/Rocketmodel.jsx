@@ -25,10 +25,7 @@ const Rocketmodel = ({ initialOrientation }) => {
         backgroundColor: "#2F2F2F",
       }}
     >
-      <Canvas
-        className="cursor-pointer"
-        frameloop="demand"
-      >
+      <Canvas className="cursor-pointer" frameloop="demand">
         <ambientLight intensity={5} />
 
         <OrbitControls

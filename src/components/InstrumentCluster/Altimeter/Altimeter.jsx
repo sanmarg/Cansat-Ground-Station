@@ -20,11 +20,11 @@ const Altimeter = ({
       <AltimeterTick className="tick-container" />
       <SmallNeedle
         className="small-needle-container"
-        style={{ transform: `rotate(${altitude*0.036}deg)` }}
+        style={{ transform: `rotate(${altitude * 0.036}deg)` }}
       />
       <Needle
         className="needle-container"
-        style={{ transform: `rotate(${altitude*0.36 + 90}deg)` }}
+        style={{ transform: `rotate(${altitude * 0.36 + 90}deg)` }}
       />
       <Border className="border-container" />
     </div>
