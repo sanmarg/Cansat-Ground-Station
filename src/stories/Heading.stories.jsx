@@ -1,7 +1,7 @@
 import Heading from "../components/InstrumentCluster/Heading/Heading";
 
 export default {
-  title: "Heading",
+  title: "Instrument Cluster/Heading",
   component: Heading,
 };
 

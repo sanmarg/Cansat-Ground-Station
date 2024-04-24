@@ -1,7 +1,7 @@
 import VerticalSpeed from "../components/InstrumentCluster/VerticalSpeed/VerticalSpeed";
 
 export default {
-  title: "VerticalSpeed",
+  title: "Instrument Cluster/VerticalSpeed",
   component: VerticalSpeed,
 };
 

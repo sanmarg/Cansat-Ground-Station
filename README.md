@@ -7,6 +7,28 @@
 
 Welcome to the CanSat Ground Station project! This project aims to provide a ground station software for CanSat projects using Vite and React.
 
+## Data Format
+
+Telemetry data collected from the CanSat payload is transmitted to the ground station in a structured format.
+
+- **Byte[0] Data Header, 0x0F**
+- **Byte[1-47] Telemetry Data :**
+   - packetCount (4 bytes)
+   - mode (1byte)
+   - state (1byte)
+   - altitude (4 byte)
+   - temperature (4 byte)
+   - pressure (4 byte)
+   - voltage (4 byte)
+   - gpsTime (4 byte)
+   - gpsLatitude (4 byte)
+   - gpsLongitude (4 byte)
+   - gpsSats (1 byte)
+   - tiltX (4 byte)
+   - tiltY (4 byte)
+   - rotZ (4 byte)
+- **Byte[48] Data Footer, 0x00**
+
 ## Getting Started
 
 ### Prerequisites

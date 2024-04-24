@@ -8,6 +8,7 @@ const SerialDataReader = () => {
   const [port, setPort] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
+  const [portFound, setportFound] = useState(true);
   const serialSupported = "serial" in navigator;
   const dispatch = useDispatch();
 
@@ -25,6 +26,7 @@ const SerialDataReader = () => {
           dataBuffer = dataBuffer.concat(Array.from(value));
           if (dataBuffer.length >= 47) {
             const receivedData = new Uint8Array(dataBuffer.slice(0, 47));
+            console.log(receivedData);
             const dataView = new DataView(receivedData.buffer);
 
             const packetCount = dataView.getFloat32(0, true);
@@ -69,6 +71,7 @@ const SerialDataReader = () => {
 
   async function connect() {
     try {
+      setportFound(true);
       const newPort = await navigator.serial.requestPort();
       if (!newPort) {
         console.error("No port found");
@@ -79,7 +82,7 @@ const SerialDataReader = () => {
       setReader(newPort.readable.getReader());
       setIsConnected(true);
     } catch (err) {
-      window.alert(err.message);
+      setportFound(false);
     }
   }
 
@@ -116,6 +119,7 @@ const SerialDataReader = () => {
         sx={{
           backgroundColor: !isConnected ? "green" : "red",
           color: "white",
+          border: !portFound ? "2px solid #8B0000" : null,
           "&:hover": {
             backgroundColor: !isConnected ? "#006400" : "#8B0000",
           },
