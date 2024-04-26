@@ -20,7 +20,7 @@ const App = () => {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex" }}>
-            <AirSpeed speed={telemetryData.tiltX}/>
+            <AirSpeed />
             <Altimeter />
           </div>
           <div style={{ display: "flex" }}>

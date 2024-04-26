@@ -14,7 +14,7 @@ const Heading = ({ pitch = 0, roll = 0, width = 300, height = 300 }) => {
       />
       <HorizonBall
         className="container-horizontal"
-        style={{ transform: `translateY(${pitch}px) rotate(${roll}deg)` }}
+        style={{ transform: `translateY(${-pitch}px) rotate(${roll}deg)` }}
       />
       <HorizonCircle
         className="container-background"
