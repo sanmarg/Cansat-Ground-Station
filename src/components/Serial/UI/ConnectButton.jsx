@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { readData, connect, disconnect } from "../Serial";
@@ -21,7 +21,7 @@ const ConnectButton = () => {
   };
 
   useEffect(() => {
-    readData(reader, isConnected, port,dispatch);
+    readData(reader, isConnected, port, dispatch);
     return () => {
       if (reader) {
         reader.releaseLock();

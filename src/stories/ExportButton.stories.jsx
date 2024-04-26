@@ -1,15 +1,14 @@
-import React from "react";
+import ExportButton from "../components/CSVexporter/UI/ExportButton";
 import { Provider } from "react-redux";
 import store from "../app/store";
-import ConnectButton from "../components/Serial/UI/ConnectButton";
 
 export default {
-  title: "Connect Button",
-  component: ConnectButton,
+  title: "Export Button",
+  component: ExportButton,
 };
 
 export const Default = () => (
   <Provider store={store}>
-    <ConnectButton />
+    <ExportButton />
   </Provider>
 );
