@@ -1,6 +1,5 @@
 import { pushData } from "../../features/telemetry/TelemetrySlice";
 
-
 export async function readData(reader, isConnected, port, dispatch) {
   let dataBuffer = [];
   let receivedData;
@@ -86,6 +85,11 @@ export async function connect(
     setPort(newPort);
     setReader(newPort.readable.getReader());
     setIsConnected(true);
+    sessionStorage.removeItem("csvData");
+    sessionStorage.setItem(
+      "csvData",
+      "packetCount,mode,state,altitude,temperature,pressure,voltage,gpsTime,gpsLatitude,gpsLongitude,gpsSats,tiltX,tiltY,rotZ\n"
+    );
   } catch (err) {
     setportFound(false);
   }
