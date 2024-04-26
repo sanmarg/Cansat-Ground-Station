@@ -25,7 +25,7 @@ const App = () => {
           </div>
           <div style={{ display: "flex" }}>
             <VerticalSpeed />
-            <Heading />
+            <Heading pitch={telemetryData.tiltX} roll={telemetryData.tiltY} />
           </div>
         </div>
       </div>

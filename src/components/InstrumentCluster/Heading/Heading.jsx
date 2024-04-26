@@ -6,6 +6,10 @@ import HorizonMechanics from "../../../Assets/img/horizon_mechanics.svg?react";
 import Border from "../../../Assets/img/fi_circle.svg?react";
 
 const Heading = ({ pitch = 0, roll = 0, width = 300, height = 300 }) => {
+  const maxPitch = height / 2 - height / 3;
+  const minPitch = -(height / 2 - height / 3);
+  const limitedPitch = Math.min(Math.max(pitch, minPitch), maxPitch);
+
   return (
     <div className="container" style={{ width, height }}>
       <Background
@@ -14,7 +18,9 @@ const Heading = ({ pitch = 0, roll = 0, width = 300, height = 300 }) => {
       />
       <HorizonBall
         className="container-horizontal"
-        style={{ transform: `translateY(${-pitch}px) rotate(${roll}deg)` }}
+        style={{
+          transform: `translateY(${-limitedPitch}px) rotate(${roll}deg)`,
+        }}
       />
       <HorizonCircle
         className="container-background"

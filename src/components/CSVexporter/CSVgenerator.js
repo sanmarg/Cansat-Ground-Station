@@ -2,7 +2,6 @@ export const appendtoCSV = (newData) => {
   let csvContent = sessionStorage.getItem("csvData") || "";
   const csvRow = Object.values(newData).join(",") + "\n";
   csvContent += csvRow;
-  console.log(csvContent);
   sessionStorage.setItem("csvData", csvContent);
 };
 
