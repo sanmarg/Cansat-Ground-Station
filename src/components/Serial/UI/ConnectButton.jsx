@@ -6,39 +6,42 @@ import { readData, connect, disconnect } from "../Serial";
 const ConnectButton = () => {
   const serialSupported = "serial" in navigator;
   const [port, setPort] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
   const [reader, setReader] = useState(null);
   const [portFound, setportFound] = useState(true);
+  const connected = useSelector((state) => state.connected.value);
   const baudRate = useSelector((state) => state.baudrate.value);
+  const launch = useSelector((state) => state.launch.value);
   const dispatch = useDispatch();
 
   const handleClick = async () => {
-    if (!isConnected) {
-      await connect(setportFound, setPort, setReader, setIsConnected, baudRate);
+    if (!connected) {
+      await connect(setportFound, setPort, setReader, dispatch, baudRate);
     } else {
-      await disconnect(setIsConnected, reader, setReader, port, setPort);
+      await disconnect(dispatch, reader, setReader, port, setPort);
     }
   };
 
   useEffect(() => {
-    readData(reader, isConnected, port, dispatch);
+    if (reader) {
+      readData(reader, connected, port, dispatch);
+    }
     return () => {
       if (reader) {
         reader.releaseLock();
       }
     };
-  }, [isConnected, port]);
+  }, [connected, port]);
 
   return (
     <div>
       <Button
         variant="contained"
         sx={{
-          backgroundColor: !isConnected ? "green" : "red",
+          backgroundColor: !connected ? "green" : "red",
           color: "white",
           border: !portFound ? "2px solid #8B0000" : null,
           "&:hover": {
-            backgroundColor: !isConnected ? "#006400" : "#8B0000",
+            backgroundColor: !connected ? "#006400" : "#8B0000",
           },
           "&:disabled": {
             backgroundColor: "red",
@@ -47,9 +50,9 @@ const ConnectButton = () => {
           minWidth: "130px",
         }}
         onClick={handleClick}
-        disabled={!serialSupported}
+        disabled={!serialSupported || launch}
       >
-        {isConnected ? "Disconnect" : "Connect"}
+        {connected ? "Disconnect" : "Connect"}
       </Button>
     </div>
   );
