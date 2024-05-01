@@ -5,9 +5,12 @@ import { appendtoCSV, handleExportCSV } from "../CSVgenerator";
 
 const ExportButton = () => {
   const telemetryData = useSelector((state) => state.telemetry.value);
+  const connected = useSelector((state) => state.connected.value);
 
   useEffect(() => {
-    appendtoCSV(telemetryData);
+    if (connected) {
+      appendtoCSV(telemetryData);
+    }
   }, [telemetryData]);
 
   return (

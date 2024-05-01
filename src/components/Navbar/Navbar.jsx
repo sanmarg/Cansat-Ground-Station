@@ -2,6 +2,7 @@ import "./Navbar.css";
 import ConnectButton from "../Serial/UI/ConnectButton";
 import BaudSelector from "../Serial/UI/BaudSelector";
 import ExportButton from "../CSVexporter/UI/ExportButton";
+import StartMission from "../StartMission/UI/StartMission";
 import { AppBar, Toolbar, Box } from "@mui/material";
 
 const Navbar = () => {
@@ -12,6 +13,10 @@ const Navbar = () => {
           <img className="logo-container" src="gagan.png" alt="Logo" />
 
           <Box sx={{ flexGrow: 1 }} />
+          
+          <Box sx={{ ml: 2 }}>
+            <StartMission />
+          </Box>
 
           <Box sx={{ ml: 2 }}>
             <ExportButton />

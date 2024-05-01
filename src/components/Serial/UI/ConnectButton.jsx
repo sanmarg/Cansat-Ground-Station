@@ -10,6 +10,7 @@ const ConnectButton = () => {
   const [portFound, setportFound] = useState(true);
   const connected = useSelector((state) => state.connected.value);
   const baudRate = useSelector((state) => state.baudrate.value);
+  const launch = useSelector((state) => state.launch.value);
   const dispatch = useDispatch();
 
   const handleClick = async () => {
@@ -49,7 +50,7 @@ const ConnectButton = () => {
           minWidth: "130px",
         }}
         onClick={handleClick}
-        disabled={!serialSupported}
+        disabled={!serialSupported || launch}
       >
         {connected ? "Disconnect" : "Connect"}
       </Button>
