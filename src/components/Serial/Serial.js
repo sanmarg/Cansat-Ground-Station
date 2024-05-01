@@ -1,4 +1,5 @@
 import { pushData } from "../../features/telemetry/TelemetrySlice";
+import { setConnected } from "../../features/configs/connectedSlice";
 
 export async function readData(reader, isConnected, port, dispatch) {
   let dataBuffer = [];
@@ -71,7 +72,7 @@ export async function connect(
   setportFound,
   setPort,
   setReader,
-  setIsConnected,
+  dispatch,
   baudRate
 ) {
   try {
@@ -84,26 +85,27 @@ export async function connect(
     await newPort.open({ baudRate: baudRate });
     setPort(newPort);
     setReader(newPort.readable.getReader());
-    setIsConnected(true);
+    dispatch(setConnected(true));
     sessionStorage.removeItem("csvData");
     sessionStorage.setItem(
       "csvData",
       "packetCount,mode,state,altitude,temperature,pressure,voltage,gpsTime,gpsLatitude,gpsLongitude,gpsSats,tiltX,tiltY,rotZ\n"
     );
   } catch (err) {
+    console.log(err);
     setportFound(false);
   }
 }
 
 export async function disconnect(
-  setIsConnected,
-  reader,
-  setReader,
-  port,
+  dispatch, 
+  reader, 
+  setReader, 
+  port, 
   setPort
 ) {
   try {
-    setIsConnected(false);
+    dispatch(setConnected(false));
     if (reader) {
       reader.releaseLock();
       setReader(null);
