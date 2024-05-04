@@ -6,6 +6,7 @@ import Altimeter from "./components/InstrumentCluster/Altimeter/Altimeter";
 import VerticalSpeed from "./components/InstrumentCluster/VerticalSpeed/VerticalSpeed";
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Heading from "./components/InstrumentCluster/Heading/Heading";
+
 const App = () => {
   const telemetryData = useSelector((state) => state.telemetry.value);
 
