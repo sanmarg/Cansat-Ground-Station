@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import AirSpeed from "./components/InstrumentCluster/AirSpeed/AirSpeed";
