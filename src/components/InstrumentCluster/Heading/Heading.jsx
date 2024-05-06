@@ -1,4 +1,5 @@
 import "./Heading.css";
+import React from "react";
 import Background from "../../../Assets/img/horizon_back.svg?react";
 import HorizonBall from "../../../Assets/img/horizon_ball.svg?react";
 import HorizonCircle from "../../../Assets/img/horizon_circle.svg?react";
@@ -9,6 +10,8 @@ const Heading = ({ pitch = 0, roll = 0, width = 300, height = 300 }) => {
   const maxPitch = height / 2 - height / 3;
   const minPitch = -(height / 2 - height / 3);
   const limitedPitch = Math.min(Math.max(pitch, minPitch), maxPitch);
+  const sinRoll = Math.sin((roll * Math.PI) / 180);
+  const cosRoll = Math.cos((roll * Math.PI) / 180)
 
   return (
     <div className="container" style={{ width, height }}>
@@ -19,7 +22,7 @@ const Heading = ({ pitch = 0, roll = 0, width = 300, height = 300 }) => {
       <HorizonBall
         className="container-horizontal"
         style={{
-          transform: `translateY(${-limitedPitch}px) rotate(${roll}deg)`,
+          transform: `translateX(${limitedPitch * sinRoll}px) translateY(${limitedPitch * -cosRoll}px) rotate(${roll}deg)`,
         }}
       />
       <HorizonCircle
