@@ -1,21 +1,24 @@
-import Button from "@mui/material/Button";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { appendtoCSV, handleExportCSV } from "../CSVgenerator";
+import Button from "@mui/material/Button"; // material-ui component
+import { useEffect } from "react"; // react hook
+import { useSelector } from "react-redux"; // react-redux hook
+import { appendtoCSV, handleExportCSV } from "../CSVgenerator"; // functions to generate and export CSV
 
+// ExportButton component
 const ExportButton = () => {
-  const telemetryData = useSelector((state) => state.telemetry.value);
-  const connected = useSelector((state) => state.connected.value);
+  const telemetryData = useSelector((state) => state.telemetry.value); // get telemetry data from Redux store
+  const connected = useSelector((state) => state.connected.value); // get connection status from Redux store
 
+  // useEffect hook to append telemetry data to CSV file when connected
   useEffect(() => {
     if (connected) {
       appendtoCSV(telemetryData);
     }
-  }, [telemetryData]);
+  }, [telemetryData]); // run when telemetryData changes
 
+  // return ExportButton component
   return (
     <div>
-      <Button
+      <Button // Button component to export CSV file
         variant="contained"
         onClick={handleExportCSV}
         sx={{
