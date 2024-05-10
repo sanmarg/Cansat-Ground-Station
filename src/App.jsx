@@ -1,3 +1,6 @@
+//This is the App component that renders different components like Navbar, Airspeed ... etc.
+
+// Import necessary modules and components
 import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import AirSpeed from "./components/InstrumentCluster/AirSpeed/AirSpeed";
@@ -6,9 +9,11 @@ import VerticalSpeed from "./components/InstrumentCluster/VerticalSpeed/Vertical
 import Rocketmodel from "./components/Rocketmodel/Rocketmodel";
 import Heading from "./components/InstrumentCluster/Heading/Heading";
 
+// Define the App component
 const App = () => {
+  // Use the useSelector hook to extract telemetry data from the Redux store
   const telemetryData = useSelector((state) => state.telemetry.value);
-
+  // Render the App component
   return (
     <>
       <div>
@@ -33,4 +38,5 @@ const App = () => {
   );
 };
 
+// Export the App component
 export default App;
