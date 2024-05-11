@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"; // Export the reducer created by createSlice
 
+// Define the initial state for the telemetry data
 const dataSend = {
   packetCount: 0,
   mode: 0,
@@ -17,17 +18,21 @@ const dataSend = {
   rotZ: 0,
 };
 
+// Create a slice of the Redux store for the telemetry data
+// A slice includes a reducer, actions, and selectors
 export const TelemetrySlice = createSlice({
-  name: "telemetry",
+  name: "telemetry", // The name of the slice
   initialState: {
-    value: dataSend,
+    value: dataSend, // The initial state value
   },
   reducers: {
+    // Define a reducer for pushing new telemetry data
     pushData: (state, action) => {
-      state.value = action.payload;
+      state.value = action.payload; // Set the state value to the payload of the action
     },
   },
 });
-
+// Export the actions created by createSlice
 export const { pushData } = TelemetrySlice.actions;
+// Export the reducer created by createSlice
 export default TelemetrySlice.reducer;
