@@ -19,10 +19,10 @@ const App = () => {
       <div>
         <Navbar />
       </div>
-      <div style={{ display: "flex"}} id="Main_container">
+      <div style={{ display: "flex",justifyContent:'center',alignItems:'center'}} id="Main_container">
           <Rocketmodel />
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex" ,flexDirection:'column'}}>
+          <div style={{ display: "flex" }}>
             <AirSpeed />
             <Altimeter />
           </div>
