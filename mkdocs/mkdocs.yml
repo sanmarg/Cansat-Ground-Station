@@ -1,5 +1,6 @@
 site_name: Cansat Ground Station
 site_author: Cansat
+docs_dir: Docs
 
 theme:
   name: material
