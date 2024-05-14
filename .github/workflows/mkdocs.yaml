@@ -1,4 +1,4 @@
-name: Deploy
+name: Mk Docs
 
 on:
   push:
@@ -7,9 +7,6 @@ on:
     tags:
       - "*"
   pull_request:
-
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -29,23 +26,21 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('MkDocs/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install MkDocs and dependencies
-        run: |
-          pip install mkdocs
-          pip install mkdocs-material pillow cairosvg
+      - name: Install dependencies
+        run: pip install -r mkdocs/requirements.txt
 
       - name: Build MkDocs project
-        run: mkdocs build
+        run: mkdocs build -f MkDocs/mkdocs.yml
 
       - name: Upload MkDocs build files
         uses: actions/upload-artifact@v2
         with:
           name: mkdocs-files
-          path: ./site
+          path: mkDocs/site
 
   deploy:
     name: Deploy to GitHub Pages
