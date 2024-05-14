@@ -1,4 +1,5 @@
-[![Build](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/deploy.yaml)
+[![Build](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/build.yaml/badge.svg)](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/build.yaml)
+[![Documentation](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/mkdocs.yaml/badge.svg)](https://github.com/Gagan-Space/Cansat-Ground-Station/actions/workflows/mkdocs.yaml)
 ![GitHub Release](https://img.shields.io/github/v/release/Gagan-Space/Cansat-Ground-Station)
 ![GitHub License](https://img.shields.io/github/license/Gagan-Space/Cansat-Ground-Station)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Gagan-Space/Cansat-Ground-Station?style=flat)
